@@ -4,10 +4,6 @@ in vec4 v_Position;
 in vec4 v_Color;
 in mat4 v_MVP;
 
-float circleShape(vec2 position, float radius) {
-    return step(radius, length(position - vec2(720.0f/2.0)));
-}
-
 void main(void) {
     float radius = 160.0;
     vec2 p = (v_Position.xy - vec2(720.0f/2.0f)) / radius;
