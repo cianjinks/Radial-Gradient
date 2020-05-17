@@ -158,6 +158,8 @@ public class Application {
         Shader shaderHandler = new Shader();
         shaderHandler.addShader("/shaders/vert.shader", GL30.GL_VERTEX_SHADER);
         shaderHandler.addShader("/shaders/frag.shader", GL30.GL_FRAGMENT_SHADER);
+        shaderHandler.validateProgram();
+        shaderHandler.bindProgram();
 
         Matrix4f mvp = new Matrix4f().ortho(0.0f, WINDOW_WIDTH, 0.0f, WINDOW_HEIGHT, -1.0f, 1.0f);
 

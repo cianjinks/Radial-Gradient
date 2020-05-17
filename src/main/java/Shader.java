@@ -39,9 +39,12 @@ public class Shader {
     }
 
     public void bindProgram() {
+        GL30.glUseProgram(program);
+    }
+
+    public void validateProgram() {
         GL30.glLinkProgram(program);
         GL30.glValidateProgram(program);
-        GL30.glUseProgram(program);
     }
 
     public void unBindProgram() {
@@ -60,6 +63,20 @@ public class Shader {
         else {
             System.out.println("The name " + name + " does not correspond to an active uniform variable in the current shader.");
         }
+    }
+
+    public void setUniVec1f(String name, float[] vector) {
+        int uniformLocation = GL30.glGetUniformLocation(program, name);
+        if(uniformLocation != -1) {
+            GL30.glUniform1fv(uniformLocation, vector);
+        }
+        else {
+            System.out.println("The name " + name + " does not correspond to an active uniform variable in the current shader.");
+        }
+    }
+
+    public void bindShaderAttribute(int index, String name) {
+        GL20.glBindAttribLocation(program, index, name);
     }
 
     public static String parseShaderFromFile(String filePath) {
